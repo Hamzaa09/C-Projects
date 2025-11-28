@@ -13,6 +13,7 @@ int main()
 {
 
   int u_i;
+  //title
   printf("\n\n      =======  TIC TAC TOE.. ======= \n\n");
   printf("Press 1 to play with a friend:\nPress 2 to play with Computer: \n");
   scanf("%d", &u_i);
