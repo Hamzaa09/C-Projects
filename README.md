@@ -2,6 +2,8 @@
 
 A collection of C programs built while learning core programming concepts.
 
+<br/>
+
 ## Featured Project: Tic Tac Toe
 
 A console-based Tic Tac Toe game supporting two-player and single-player (vs Computer) modes.
