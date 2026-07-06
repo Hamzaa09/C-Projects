@@ -12,8 +12,10 @@ int check();
 int main()
 {
 
+  srand(time(0));
   int u_i;
-  //title
+  // title
+
   printf("\n\n      =======  TIC TAC TOE.. ======= \n\n");
   printf("Press 1 to play with a friend:\nPress 2 to play with Computer: \n");
   scanf("%d", &u_i);
@@ -22,7 +24,7 @@ int main()
   if (u_i == 1)
   {
 
-    int result, player1, player2, input;
+    int result, input;
     char mark1 = 'X', mark2 = 'O';
 
     board();
@@ -30,27 +32,28 @@ int main()
     while (check() == -1)
     {
 
-      printf("Player 1 Choose Your Partition..!\n");
-      scanf("%d", &input);
-
-      if (input < 1 || 9 > input)
+      do
       {
-        printf("Invalid Input..\n");
-      }
-
-      if (a[input] == 'X' || a[input] == 'O')
-      {
-
-        printf("Already Taken, Player 1 Again Choose Your Partition..!\n");
+        printf("Player 1 Choose Your Partition..!\n");
         scanf("%d", &input);
 
-        a[input] = mark1;
-      }
-      else
-      {
+        if (input < 1 || 9 < input)
+        {
+          printf("Invalid Input..\n");
+          continue;
+        }
 
-        a[input] = mark1;
-      }
+        if (a[input] == 'X' || a[input] == 'O')
+        {
+
+          printf("Already Taken, Player 1 Again Choose Your Partition..!\n");
+          continue;
+        }
+
+        break;
+      } while (1);
+
+      a[input] = mark1;
 
       board();
 
@@ -66,27 +69,28 @@ int main()
         break;
       }
 
-      printf("Player 2 Choose Your Partition..!\n");
-      scanf("%d", &input);
-
-      if (input < 1 || 9 > input)
+      do
       {
-        printf("Invalid Input..\n");
-      }
-
-      if (a[input] == 'X' || a[input] == 'O')
-      {
-
-        printf("Already Taken, Player 2 Again Choose Your Partition..!\n");
+        printf("Player 2 Choose Your Partition..!\n");
         scanf("%d", &input);
 
-        a[input] = mark2;
-      }
-      else
-      {
+        if (input < 1 || 9 < input)
+        {
+          printf("Invalid Input..\n");
+          continue;
+        }
 
-        a[input] = mark2;
-      }
+        if (a[input] == 'X' || a[input] == 'O')
+        {
+
+          printf("Already Taken, Player 2 Again Choose Your Partition..!\n");
+          continue;
+        }
+
+        break;
+      } while (1);
+
+      a[input] = mark2;
 
       board();
 
@@ -120,27 +124,31 @@ int main()
 
       int user;
       mark = (players == 1) ? 'X' : 'O';
-      printf("Choose Your Partition..!\n");
-      scanf("%d", &user);
 
-      if (user < 1 || 9 > user)
+      do
       {
-        printf("Invalid Input..\n");
-      }
-
-      if (a[user] == 'X' || a[user] == 'O')
-      {
-
-        printf("Already Taken, Plzz Again Choose Your Partition..!\n");
+        printf("Choose Your Partition..!\n");
         scanf("%d", &user);
 
-        a[user] = mark;
-      }
-      else
-      {
+        if (user < 1 || 9 < user)
+        {
+          printf("Invalid Input..\n");
 
-        a[user] = mark;
-      }
+          continue;
+        }
+
+        if (a[user] == 'X' || a[user] == 'O')
+        {
+
+          printf("Already Taken, Plzz Again Choose Your Partition..!\n");
+
+          continue;
+        }
+
+        break;
+      } while (1);
+
+      a[user] = mark;
 
       board();
       result = check();
@@ -150,21 +158,22 @@ int main()
         printf("\n\nCongratulations!, You won.....\n");
         break;
       }
+      else if (result == 1)
+      {
+        printf("Tie..!");
+        break;
+      }
 
       // Generating computer's turn
       int num, number;
       char c_mark;
 
       c_mark = (mark == 'X') ? 'O' : 'X';
-      srand(time(0));
       number = rand();
       num = (number % 9) + 1;
 
-      a[num] = c_mark;
-
-      while (num == a[user] || num == a[num])
+      while (a[num] == 'X' || a[num] == 'O')
       {
-        srand(time(0));
         number = rand();
         num = (number % 9) + 1;
       }
@@ -179,17 +188,11 @@ int main()
         printf("\n\nBad Luck!, Computer won.....\n");
         break;
       }
-      else
+      else if (result == 1)
       {
+        printf("Tie..!");
+        break;
       }
-    }
-
-    if (result == 1)
-    {
-      printf("Tie");
-    }
-    else
-    {
     }
   }
 
@@ -215,7 +218,7 @@ int board()
   printf("\t  %c   |     %c     |   %c\n", a[7], a[8], a[9]);
   printf("\t      |           |\n\n");
 
-  check(a);
+  check();
 }
 
 // Result Checking
