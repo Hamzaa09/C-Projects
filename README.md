@@ -20,8 +20,8 @@ A console-based Tic Tac Toe game supporting two-player and single-player (vs Com
 
 **Build & Run**
 ```bash
-gcc TicTacToe.c -o TicTacToe
-./TicTacToe
+gcc tictac.c -o tictac
+./tictac
 ```
 Built and tested on Windows (MinGW/GCC), since it uses `conio.h` and `system("cls")`.
 
